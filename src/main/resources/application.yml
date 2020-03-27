@@ -1,0 +1,22 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: njut_lr@163.com
+    password: wenda123
+    port: 25
+    protocol: smtp
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: ture
+          ssl:
+            enable: true
+          sendpartial: true
+
+
+
+
