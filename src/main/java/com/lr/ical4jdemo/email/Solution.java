@@ -24,16 +24,23 @@ public class Solution {
 
     public static void sendMeetingInvitationEmail() {
         try {
+            String candidateName = "薛松";
+            String jobTitle = "JAVA开发工程师";
+
+            String interviewerName = "面试官";
+
             props = new Properties();
             //发件人
             String fromEmail = props.getProperty("fromEmail", "656812771@qq.com");
             //收件人(面试官)
-            String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
+            //String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
             //String toEmail = props.getProperty("toEmail", "2389889598@qq.com");
-            //String toEmail = props.getProperty("toEmail", "656812771@qq.com");
+            String toEmail = props.getProperty("toEmail", "656812771@qq.com");
             //String toEmail = props.getProperty("toEmail", "alter0129@gmail.com");
             //String toEmail = props.getProperty("toEmail", "njut_lr@163.com");
-            //props.put("mail.smtp.port", "587");
+            //String toEmail = props.getProperty("toEmail", "656812771@njtech.edu.cn");
+
+            props.put("mail.smtp.port", "25");
             props.put("mail.smtp.host", "smtp.qq.com");
             //当前smtp host设为可信任 否则抛出javax.mail.MessagingException: Could not  convert socket to TLS
             props.put("mail.smtp.ssl.trust", "smtp.qq.com");
@@ -58,11 +65,12 @@ public class Solution {
             message.setFrom(new InternetAddress(fromEmail));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             //标题
-            message.setSubject("XXX公司诚邀应聘");
+            message.setSubject("候选人面试");
+
             //面试开始时间
-            String startTime = getUtc("2020-03-30 14:00");
+            String startTime = getUtc("2020-04-01 14:00");
             //面试结束时间
-            String endTime = getUtc("2020-03-30 15:00");
+            String endTime = getUtc("2020-04-01 15:00");
             BodyPart messageBodyPart = new MimeBodyPart();
             String buffer = "BEGIN:VCALENDAR\n"
                     + "PRODID:-//Microsoft Corporation//Outlook 9.0 MIMEDIR//EN\n"
@@ -70,7 +78,7 @@ public class Solution {
                     + "METHOD:REQUEST\n"
                     + "BEGIN:VEVENT\n"
                     //参会者
-                    + "ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE:MAILTO:你和应聘者\n"
+                    + "ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE:MAILTO:"+candidateName+"、"+interviewerName+"\n"
                     //组织者
                     //+ "ORGANIZER:MAILTO:张三\n"
                     + "DTSTART:" + startTime + "\n"
@@ -80,12 +88,13 @@ public class Solution {
                     //如果id相同的话，outlook会认为是同一个会议请求，所以使用uuid。
                     + "UID:" + UUID.randomUUID().toString() + "\n"
                     + "CATEGORIES:\n"
-                    //会议描述
-                    //+ "DESCRIPTION:Stay Hungry.<br>Stay Foolish.\n\n"
+//                    //会议描述
+//                    + "DESCRIPTION:候选人姓名:" + candidateName + "\n\n"
+//                    + " 应聘岗位:" + jobTitle + "\n"
                     + "SUMMARY:面试邀请\n" + "PRIORITY:5\n"
                     + "CLASS:PUBLIC\n" + "BEGIN:VALARM\n"
-                    //提前10分钟提醒
-                    + "TRIGGER:-PT10M\n" + "ACTION:DISPLAY\n"
+                    //提前15分钟提醒
+                    + "TRIGGER:-PT15M\n" + "ACTION:DISPLAY\n"
                     + "DESCRIPTION:Reminder\n" + "END:VALARM\n"
                     + "END:VEVENT\n" + "END:VCALENDAR";
             //参会者
@@ -101,8 +110,8 @@ public class Solution {
             MimeMultipart multipart = new MimeMultipart();
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             //String emailText = getHtmlContent(sendEmailApi.getTemplateContent(tempValue),tempMap);
-            //文本类型正文
-            mimeBodyPart.setText("尊敬的XX:\r您好！\r特邀您来面试");
+            //文本类型正文(显示在日历上面的)
+            mimeBodyPart.setText("候选人姓名:"+candidateName+"\n\n"+"应聘岗位:" + jobTitle + "\n");
             //html类型正文
             //mimeBodyPart.setContent(emailText,"text/html;charset=UTF-8");
             //添加正文
