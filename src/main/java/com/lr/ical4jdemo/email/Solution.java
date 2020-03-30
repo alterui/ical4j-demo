@@ -29,6 +29,10 @@ public class Solution {
             String fromEmail = props.getProperty("fromEmail", "656812771@qq.com");
             //收件人(面试官)
             String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
+            //String toEmail = props.getProperty("toEmail", "2389889598@qq.com");
+            //String toEmail = props.getProperty("toEmail", "656812771@qq.com");
+            //String toEmail = props.getProperty("toEmail", "alter0129@gmail.com");
+            //String toEmail = props.getProperty("toEmail", "njut_lr@163.com");
             //props.put("mail.smtp.port", "587");
             props.put("mail.smtp.host", "smtp.qq.com");
             //当前smtp host设为可信任 否则抛出javax.mail.MessagingException: Could not  convert socket to TLS
@@ -98,7 +102,7 @@ public class Solution {
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             //String emailText = getHtmlContent(sendEmailApi.getTemplateContent(tempValue),tempMap);
             //文本类型正文
-            mimeBodyPart.setText("尊敬的张三:\r您好！\r特邀您...");
+            mimeBodyPart.setText("尊敬的XX:\r您好！\r特邀您来面试");
             //html类型正文
             //mimeBodyPart.setContent(emailText,"text/html;charset=UTF-8");
             //添加正文
