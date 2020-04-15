@@ -65,7 +65,7 @@ public class Solution {
             message.setFrom(new InternetAddress(fromEmail));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             //标题
-            message.setSubject("候选人面试");
+            //message.setSubject("候选人面试");
 
 
             //-//Microsoft Corporation//Outlook 9.0 MIMEDIR//EN
@@ -90,7 +90,7 @@ public class Solution {
                     + "DTSTART:" + startTime + "\n"
                     + "DTEND:" + endTime + "\n"
                     //面试地点
-                    + "LOCATION:会议室01\n"
+//                    + "LOCATION:会议室01\n"
                     //如果id相同的话，outlook会认为是同一个会议请求，所以使用uuid。
                     + "UID:" + UUID.randomUUID().toString() + "\n"
                     + "CATEGORIES:\n"
