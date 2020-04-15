@@ -19,10 +19,13 @@ public class Solution1 {
         // isAdd = true
         if (!isAdd) {
             ids = Arrays.asList(1, 3, 4);
+            System.out.println("这里是edit");
+
         }
         // isEdit = false
         if(!isEdit) {
            ids.forEach(System.out::println);
+            System.out.println("这里是add");
         }
     }
 }

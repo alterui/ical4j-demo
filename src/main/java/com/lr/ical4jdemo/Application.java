@@ -80,14 +80,14 @@ public class Application {
        /* calendar.getProperties().add(CalScale.GREGORIAN);
 */
         // 下面这行很关键，缺少的话钉钉IOS邮箱会显示1970--01-01 08:00
-       // calendar.getProperties().add(Method.REQUEST);
+        calendar.getProperties().add(Method.REQUEST);
 
         // Start Date is on: April 1, 2008, 9:00 am
         java.util.Calendar startDate = new GregorianCalendar();
         startDate.setTimeZone(timezone);
         startDate.set(java.util.Calendar.MONTH, java.util.Calendar.APRIL);
         startDate.set(java.util.Calendar.DAY_OF_MONTH, 1);
-        startDate.set(java.util.Calendar.YEAR, 2008);
+        startDate.set(java.util.Calendar.YEAR, 2020);
         startDate.set(java.util.Calendar.HOUR_OF_DAY, 9);
         startDate.set(java.util.Calendar.MINUTE, 0);
         startDate.set(java.util.Calendar.SECOND, 0);
@@ -97,7 +97,7 @@ public class Application {
         endDate.setTimeZone(timezone);
         endDate.set(java.util.Calendar.MONTH, java.util.Calendar.APRIL);
         endDate.set(java.util.Calendar.DAY_OF_MONTH, 1);
-        endDate.set(java.util.Calendar.YEAR, 2008);
+        endDate.set(java.util.Calendar.YEAR, 2020);
         endDate.set(java.util.Calendar.HOUR_OF_DAY, 13);
         endDate.set(java.util.Calendar.MINUTE, 0);
         endDate.set(java.util.Calendar.SECOND, 0);
@@ -163,8 +163,8 @@ public class Application {
         calendar.getComponents().add(event);
         // 验证
         try {
-            calendar.validate();
-        } catch (ValidationException e) {
+           // calendar.validate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

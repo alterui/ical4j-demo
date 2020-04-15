@@ -33,11 +33,11 @@ public class Solution {
             //发件人
             String fromEmail = props.getProperty("fromEmail", "656812771@qq.com");
             //收件人(面试官)
-            //String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
+            String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
             //String toEmail = props.getProperty("toEmail", "2389889598@qq.com");
             //String toEmail = props.getProperty("toEmail", "656812771@qq.com");
             //String toEmail = props.getProperty("toEmail", "alter0129@gmail.com");
-            String toEmail = props.getProperty("toEmail", "njut_lr@163.com");
+            //String toEmail = props.getProperty("toEmail", "njut_lr@163.com");
             //String toEmail = props.getProperty("toEmail", "656812771@njtech.edu.cn");
 
             props.put("mail.smtp.port", "25");
@@ -72,17 +72,19 @@ public class Solution {
             //-//PROD_NAME//PROD_ORG//EN\n
 
             //面试开始时间
-            String startTime = getUtc("2020-04-01 14:00");
+            String startTime = getUtc("2020-04-15 14:00");
             //面试结束时间
-            String endTime = getUtc("2020-04-01 15:00");
+            String endTime = getUtc("2020-04-15 15:00");
             BodyPart messageBodyPart = new MimeBodyPart();
-            String buffer = "BEGIN:VCALENDAR\n"
+
+
+            String buffer =  "BEGIN:VCALENDAR\n"
                     + "PRODID:-//Microsoft Corporation//Outlook 9.0 MIMEDIR//EN\n"
                     + "VERSION:2.0\n"
                     + "METHOD:REQUEST\n"
                     + "BEGIN:VEVENT\n"
                     //参会者
-                    + "ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE:MAILTO:"+candidateName+"、"+interviewerName+"\n"
+                    + "ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE:MAILTO:你和应聘者\n"
                     //组织者
                     //+ "ORGANIZER:MAILTO:张三\n"
                     + "DTSTART:" + startTime + "\n"
@@ -92,30 +94,24 @@ public class Solution {
                     //如果id相同的话，outlook会认为是同一个会议请求，所以使用uuid。
                     + "UID:" + UUID.randomUUID().toString() + "\n"
                     + "CATEGORIES:\n"
-//                    //会议描述
-//                    + "DESCRIPTION:候选人姓名:" + candidateName + "\n\n"
-//                    + " 应聘岗位:" + jobTitle + "\n"
-                    + "SUMMARY:面试邀请\n" + "PRIORITY:5\n"
+                    //会议描述
+                    //+ "DESCRIPTION:Stay Hungry.<br>Stay Foolish.\n\n"
+                    + "SUMMARY:仟寻面试邀请\n" + "PRIORITY:5\n"
                     + "CLASS:PUBLIC\n" + "BEGIN:VALARM\n"
-                    //提前15分钟提醒
-                    + "TRIGGER:-PT15M\n" + "ACTION:DISPLAY\n"
+                    //提前10分钟提醒
+                    + "TRIGGER:-PT10M\n" + "ACTION:DISPLAY\n"
                     + "DESCRIPTION:Reminder\n" + "END:VALARM\n"
                     + "END:VEVENT\n" + "END:VCALENDAR";
-            //参会者
-            //组织者
-            //+ "ORGANIZER:MAILTO:张三\n"
-            //面试地点
-            //如果id相同的话，outlook会认为是同一个会议请求，所以使用uuid。
-            //会议描述
-            //+ "DESCRIPTION:Stay Hungry.<br>Stay Foolish.\n\n"
-            //提前10分钟提醒
+
+
+
             messageBodyPart.setDataHandler(new DataHandler(new ByteArrayDataSource(buffer,
                     "text/calendar;method=REQUEST;charset=\"UTF-8\"")));
             MimeMultipart multipart = new MimeMultipart();
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             //String emailText = getHtmlContent(sendEmailApi.getTemplateContent(tempValue),tempMap);
             //文本类型正文(显示在日历上面的)
-            mimeBodyPart.setText("候选人姓名:"+candidateName+"\n\n"+"应聘岗位:" + jobTitle + "\n");
+            mimeBodyPart.setText("");
             //html类型正文
             //mimeBodyPart.setContent(emailText,"text/html;charset=UTF-8");
             //添加正文
