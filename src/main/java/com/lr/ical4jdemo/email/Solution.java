@@ -33,9 +33,9 @@ public class Solution {
             //发件人
             String fromEmail = props.getProperty("fromEmail", "656812771@qq.com");
             //收件人(面试官)
-            String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
+            //String toEmail = props.getProperty("toEmail", "liurui@moseeker.com");
             //String toEmail = props.getProperty("toEmail", "2389889598@qq.com");
-            //String toEmail = props.getProperty("toEmail", "656812771@qq.com");
+            String toEmail = props.getProperty("toEmail", "656812771@qq.com");
             //String toEmail = props.getProperty("toEmail", "alter0129@gmail.com");
             //String toEmail = props.getProperty("toEmail", "njut_lr@163.com");
             //String toEmail = props.getProperty("toEmail", "656812771@njtech.edu.cn");
